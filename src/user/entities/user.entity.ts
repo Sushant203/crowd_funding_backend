@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { userType } from "../dto/userRole";
 
+@Entity()
 export class User {
     @PrimaryGeneratedColumn()
     user_id: number
