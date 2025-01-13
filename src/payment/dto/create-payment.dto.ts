@@ -9,7 +9,7 @@ export class CreatePaymentDto {
     campaign_id: number
 
     @IsDecimal()
-    donatedAmount: number
+    donatedAmount: bigint
 
     @IsEnum(paymentMethod)
     paymentMethod: paymentMethod
