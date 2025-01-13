@@ -5,7 +5,7 @@ import { UpdateUpdateCampaignDto } from './dto/update-update-campaign.dto';
 
 @Controller('update-campaign')
 export class UpdateCampaignController {
-  constructor(private readonly updateCampaignService: UpdateCampaignService) {}
+  constructor(private readonly updateCampaignService: UpdateCampaignService) { }
 
   @Post()
   create(@Body() createUpdateCampaignDto: CreateUpdateCampaignDto) {
