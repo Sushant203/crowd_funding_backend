@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { campaignStatus } from "../dto/campaignStatus";
 import { User } from "src/user/entities/user.entity";
 
+@Entity()
 export class Campaign {
     @PrimaryGeneratedColumn()
     campaign_id: number
@@ -10,19 +11,19 @@ export class Campaign {
     campaign_title: string
 
     @Column()
-    cmapaign_description: string
+    campaign_description: string
 
-    @Column()
-    targetAmount: BigInt
+    @Column({ type: 'bigint' })
+    targetAmount: number;
 
-    @Column()
-    start_date: Date
+    @Column({ type: 'date' }) // Ensuring 'date' type is explicitly specified
+    start_date: Date;
 
-    @Column()
-    end_date: Date
+    @Column({ type: 'date' })
+    end_date: Date;
 
     @Column({ type: 'enum', enum: campaignStatus })
-    role: campaignStatus
+    status: campaignStatus
 
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
@@ -31,6 +32,8 @@ export class Campaign {
     updated_at: Date;
 
 
-
+    //raltion with user table
+    @ManyToOne(() => User, (user) => user.campaign)
+    user: User
 
 }
