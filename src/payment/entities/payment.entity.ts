@@ -1,8 +1,8 @@
-import { Column, CreateDateColumn, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { paymentMethod } from "../dto/paymentMethod";
 import { User } from "src/user/entities/user.entity";
 import { Campaign } from "src/campaign/entities/campaign.entity";
-
+@Entity()
 export class Payment {
     @PrimaryGeneratedColumn()
     payment_id: number
