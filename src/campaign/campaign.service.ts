@@ -45,6 +45,7 @@ export class CampaignService {
     }
 
     const campaignAvailable = await this.campaignRepository.findOne({ where: { campaign_id } })
+    // console.log("id:", campaign_id);
     if (!campaignAvailable) {
       throw new NotFoundException("campaign not found");
     }
