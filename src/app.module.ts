@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { CampaignModule } from './campaign/campaign.module';
+import { Campaign } from './campaign/entities/campaign.entity';
 
 @Module({
   imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
@@ -16,8 +18,8 @@ import { AuthModule } from './auth/auth.module';
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     synchronize: true,
-    entities: [User]
-  }), UserModule, AuthModule],
+    entities: [User, Campaign]
+  }), UserModule, AuthModule, CampaignModule],
   controllers: [AppController],
   providers: [AppService],
 })
