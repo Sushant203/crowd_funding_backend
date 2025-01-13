@@ -26,12 +26,16 @@ export class CampaignService {
     return this.campaignRepository.save(campaignData);
   }
 
-  findAll() {
-    return `This action returns all campaign`;
+  async findAll(): Promise<Campaign[]> {
+    return this.campaignRepository.find({ relations: ['user'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} campaign`;
+  async findOne(campaign_id: number): Promise<Campaign> {
+    const campaignAvailable = await this.campaignRepository.findOne({ where: { campaign_id } })
+    if (!campaignAvailable) {
+      throw new NotFoundException("campaign not found");
+    }
+    return campaignAvailable;
   }
 
   update(id: number, updateCampaignDto: UpdateCampaignDto) {
