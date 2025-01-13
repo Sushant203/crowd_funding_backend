@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { userType } from "../dto/userRole";
+import { Campaign } from "src/campaign/entities/campaign.entity";
 
 @Entity()
 export class User {
@@ -30,5 +31,8 @@ export class User {
     @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updated_at: Date;
 
+    //relation to campaign table
+    @OneToMany(() => Campaign, (campaign) => campaign.user)
+    campaign: Campaign;
 
 }
