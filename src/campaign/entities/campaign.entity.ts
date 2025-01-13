@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { campaignStatus } from "../dto/campaignStatus";
 import { User } from "src/user/entities/user.entity";
 import { UpdateCampaign } from "src/update-campaign/entities/update-campaign.entity";
@@ -38,6 +38,7 @@ export class Campaign {
     user: User
 
     //relation with updateCampaign table
-    @OneToOne(() => UpdateCampaign, (updatecampaign) => updatecampaign.campaign)
+    @OneToOne(() => UpdateCampaign, (updatecampaign) => updatecampaign.campaign, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
+    @JoinColumn()
     updatecampaign: UpdateCampaign
 }
