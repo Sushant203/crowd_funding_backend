@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Campaign } from "src/campaign/entities/campaign.entity";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 @Entity()
 export class UpdateCampaign {
     @PrimaryGeneratedColumn()
@@ -15,4 +16,8 @@ export class UpdateCampaign {
 
     @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updated_at: Date;
+
+    //realtion with campaign table
+    @OneToOne(() => Campaign, (campaign) => campaign.updatecampaign)
+    campaign: Campaign
 }
