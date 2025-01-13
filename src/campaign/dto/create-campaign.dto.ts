@@ -13,7 +13,7 @@ export class CreateCampaignDto {
     campaignDescription: string
 
     @IsInt()
-    targetAmount: BigInt
+    targetAmount: number
 
     @IsDateString()
     start_date: Date
