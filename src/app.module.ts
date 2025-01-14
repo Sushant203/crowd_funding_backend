@@ -10,6 +10,8 @@ import { CampaignModule } from './campaign/campaign.module';
 import { Campaign } from './campaign/entities/campaign.entity';
 import { UpdateCampaignModule } from './update-campaign/update-campaign.module';
 import { UpdateCampaign } from './update-campaign/entities/update-campaign.entity';
+import { PaymentModule } from './payment/payment.module';
+import { Payment } from './payment/entities/payment.entity';
 
 @Module({
   imports: [ConfigModule.forRoot(), TypeOrmModule.forRoot({
@@ -20,8 +22,8 @@ import { UpdateCampaign } from './update-campaign/entities/update-campaign.entit
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     synchronize: true,
-    entities: [User, Campaign, UpdateCampaign]
-  }), UserModule, AuthModule, CampaignModule, UpdateCampaignModule],
+    entities: [User, Campaign, UpdateCampaign, Payment]
+  }), UserModule, AuthModule, CampaignModule, UpdateCampaignModule, PaymentModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, One
 import { campaignStatus } from "../dto/campaignStatus";
 import { User } from "src/user/entities/user.entity";
 import { UpdateCampaign } from "src/update-campaign/entities/update-campaign.entity";
+import { Payment } from "src/payment/entities/payment.entity";
 
 @Entity()
 export class Campaign {
@@ -41,4 +42,9 @@ export class Campaign {
     @OneToOne(() => UpdateCampaign, (updatecampaign) => updatecampaign.campaign, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
     @JoinColumn()
     updatecampaign: UpdateCampaign
+
+    //relation with payment table
+    @OneToMany(() => Payment, (payment) => payment.campaign)
+    @JoinColumn()
+    payment: Payment
 }

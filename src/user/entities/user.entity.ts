@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { userType } from "../dto/userRole";
 import { Campaign } from "src/campaign/entities/campaign.entity";
+import { Payment } from "src/payment/entities/payment.entity";
 
 @Entity()
 export class User {
@@ -34,5 +35,10 @@ export class User {
     //relation to campaign table
     @OneToMany(() => Campaign, (campaign) => campaign.user)
     campaign: Campaign;
+
+    //relation with payment table
+    @OneToMany(() => Payment, (payment) => payment.user)
+    @JoinColumn()
+    payment: Payment
 
 }
